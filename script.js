@@ -5,11 +5,26 @@ function GetRandomInt(min, max)
     return Math.floor(Math.random() * (maxNumberFloored - minNumberCeiled + 1) + minNumberCeiled);
 }
 
-function CopyTitle()
+function GetTitle()
 {
     const titleInput = document.querySelector('input[name="name"]');
+    return titleInput;
+}
 
-    titleInput.addEventListener("input");
+function GetItemCondition()
+{
+    const itemCondition = document.querySelector('input[placeholder="Stan"]');
+    itemCondition.click();
+
+    setTimeout(() => {
+        const option = [document.querySelectorAll('[role="listbox"]')].find(el => el.textContent.includes("Powystawowy"));
+
+        if (option) option.click();
+    }, 200);
+
+    itemCondition.dispatchEvent(new InputEvent('input', { bubbles: true }));
+    
+    return itemCondition;
 }
 
 function InputPrice()
@@ -85,4 +100,32 @@ function WriteSafetyInformation()
     const safetyInformationOption = document.querySelector('#safety-information--5a8a389c-c25f-4578-8d2a-f4ba1c28d2ee');
     safetyInformationOption.value = "TEXT";
     safetyInformationOption.dispatchEvent(new Event('change', { bubbles: true }));
+
+    // const safetyInformationText = document.querySelector('#safetyDescription-5a8a389c-c25f-4578-8d2a-f4ba1c28d2ee');
+    // safetyInformationText.v
 }
+
+function GenerateDescription()
+{   
+    const title = GetTitle();
+    const condition = GetItemCondition();
+    const template = `${title}
+    Stan ${condition}
+    Opakowanie foliowe
+    A.R.`;
+
+    const iframe = document.querySelector('#id_ifr');
+    const doc = iframe.contentDocument;
+    doc.body.innerHTML = template;
+}
+
+    InputPrice();
+    VAT();
+    PickVATRate();
+    ChooseAuctionDuration();
+    SelectShippingRate();
+    SelectPublicationTime();
+    SelectComplaintAndWarranty();
+    WriteSafetyInformation();
+    GenerateDescription();
+
