@@ -30,7 +30,7 @@ function GetItemCondition()
 function InputPrice()
 {
     const auctionCheckbox = document.querySelector('#auction-checkbox');
-    auctionCheckbox.ariaChecked = true;
+    auctionCheckbox.value = true;
     auctionCheckbox.dispatchEvent(new InputEvent('input', { bubbles: true }));
 
     const priceInput = document.querySelector('input[aria-label="Cena wywoławcza zł"');
@@ -55,7 +55,7 @@ function PickVATRate()
 function ChooseAuctionDuration()
 {
     const republishChecbox = document.querySelector('#checkbox-republish');
-    republishCheckbox.ariaChecked = true;
+    republishCheckbox.value = true;
     republishChecbox.dispatchEvent(new InputEvent('input', { bubbles: true }))
 
     const auctionDuration = document.querySelector('#auctionDurationSelect');
@@ -73,7 +73,7 @@ function SelectShippingRate()
 function SelectPublicationTime()
 {
     const publicationInTheFuture = document.querySelector('#publicationTimeInTheFuture');
-    publicationInTheFuture.ariaChecked = true;
+    publicationInTheFuture.value = true;
 
     const publicationHour = document.querySelector('#timepicker-hours');
     publicationHour.value = GetRandomInt(18, 21);
